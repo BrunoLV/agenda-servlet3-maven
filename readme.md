@@ -19,3 +19,12 @@ Para iniciar a aplicação execute:
 
 Após isso acesse [http://localhost:8080](http://localhost:8080) para acessar e começar acessar a aplicação.
   
+#### Técnologias utilizadas
+- Java 8
+- JDBC
+- FlyWay
+- Servlet 3
+- JSTL 1.2
+- MySQL 8
+
+Aplicação utiliza o Design Pattern Command para executar as ações solicitadas na navegação da aplicação.
