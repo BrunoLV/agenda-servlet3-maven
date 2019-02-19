@@ -12,32 +12,36 @@ import br.com.valhala.agenda.erro.AppException;
 
 public class FabricaConexoes {
 
-    private static final FabricaConexoes instance = new FabricaConexoes();
+	private static final FabricaConexoes instance = new FabricaConexoes();
 
-    public static FabricaConexoes getIntance() {
-        return instance;
-    }
+	public static FabricaConexoes getIntance() {
+		return instance;
+	}
 
-    private DataSource dataSource;
+	private DataSource dataSource;
 
-    protected FabricaConexoes() {
-        try {
-            Context contextInicial = new InitialContext();
-            Context contextoAmbiente = (Context) contextInicial.lookup("java:/comp/env");
-            dataSource = (DataSource) contextoAmbiente.lookup("jdbc/agenda");
-        } catch (NamingException e) {
-            throw new AppException(e.getMessage(), e);
-        }
-    }
+	protected FabricaConexoes() {
+		try {
+			Context contextInicial = new InitialContext();
+			Context contextoAmbiente = (Context) contextInicial.lookup("java:/comp/env");
+			dataSource = (DataSource) contextoAmbiente.lookup("jdbc/agenda");
+		} catch (NamingException e) {
+			throw new AppException(e.getMessage(), e);
+		}
+	}
+	
+	public DataSource getDataSource() {
+		return dataSource;
+	}
 
-    public Connection getConexao() {
-        try {
-            Connection conexao = dataSource.getConnection();
-            conexao.setAutoCommit(false);
-            return conexao;
-        } catch (SQLException e) {
-            throw new AppException(e.getMessage(), e);
-        }
-    }
+	public Connection getConexao() {
+		try {
+			Connection conexao = dataSource.getConnection();
+			conexao.setAutoCommit(false);
+			return conexao;
+		} catch (SQLException e) {
+			throw new AppException(e.getMessage(), e);
+		}
+	}
 
 }

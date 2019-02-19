@@ -17,63 +17,44 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 
-/**
- * @author bruno
- */
 @WebFilter(urlPatterns = { "/*" }, dispatcherTypes = { DispatcherType.FORWARD, DispatcherType.INCLUDE,
-        DispatcherType.REQUEST, DispatcherType.ERROR })
+		DispatcherType.REQUEST, DispatcherType.ERROR })
 public class UriAccessFilter implements Filter {
 
-    private static final Logger LOGGER = Logger.getLogger(UriAccessFilter.class);
+	private static final Logger LOGGER = Logger.getLogger(UriAccessFilter.class);
 
-    /**
-     *
-     */
-    public UriAccessFilter() {
-    }
+	public UriAccessFilter() {
+	}
 
-    /*
-     * (non-Javadoc)
-     * @see javax.servlet.Filter#destroy()
-     */
-    @Override
-    public void destroy() {
-    }
+	@Override
+	public void destroy() {
+	}
 
-    /*
-     * (non-Javadoc)
-     * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest,
-     * javax.servlet.ServletResponse, javax.servlet.FilterChain)
-     */
-    @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-            throws IOException, ServletException {
-        if (request.getCharacterEncoding() == null) {
-            request.setCharacterEncoding("UTF-8");
-        }
+	@Override
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
+		if (request.getCharacterEncoding() == null) {
+			request.setCharacterEncoding("UTF-8");
+		}
 
-        HttpServletRequest req = (HttpServletRequest) request;
+		HttpServletRequest req = (HttpServletRequest) request;
 
-        String url = req.getRequestURL().toString();
-        String queryString = req.getQueryString();
+		String url = req.getRequestURL().toString();
+		String queryString = req.getQueryString();
 
-        boolean isRecursoEstatico = url.contains("/resources/");
+		boolean isRecursoEstatico = url.contains("/resources/");
 
-        if (!isRecursoEstatico) {
-            LOGGER.info(
-                    "Uri: " + url + (queryString != null ? ("/" + queryString) : "") + " realizada dentro da Sessao "
-                            + req.getSession(true).getId() + " com Metodo: " + req.getMethod());
-        }
+		if (!isRecursoEstatico) {
+			LOGGER.info(
+					"Uri: " + url + (queryString != null ? ("/" + queryString) : "") + " realizada dentro da Sessao "
+							+ req.getSession(true).getId() + " com Metodo: " + req.getMethod());
+		}
 
-        chain.doFilter(request, response);
-    }
+		chain.doFilter(request, response);
+	}
 
-    /*
-     * (non-Javadoc)
-     * @see javax.servlet.Filter#init(javax.servlet.FilterConfig)
-     */
-    @Override
-    public void init(FilterConfig config) throws ServletException {
-    }
+	@Override
+	public void init(FilterConfig config) throws ServletException {
+	}
 
 }

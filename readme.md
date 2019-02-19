@@ -5,12 +5,17 @@ Aplicação Web Básica que representa uma agenda de contatos básica.
 
 Essa aplicação não precisa de instalação externa (apenas banco de dados).
 
-Para executa-la pelo maven execute o comando abaixo:
+Para executar a aplicação faça o seguinte:
 
-```
-mvn clean install jetty-run
-```
-Antes de executar a aplicação é necessário que:
+-[] Instalar o SGBD, no caso MySQL 8
+-[] Criar o banco de dados __agenda__
+-[] Atualizar o arquivo __jetty.xml__ para que a configuração do DataSource reflita a configuração do MySQL do ambiente onde a execução será realizada
 
-1. Instalar o banco de dados (a aplicação utiliza MySQL 8)
-	- Após instalado criar o banco de dados __agenda__ (apenas o banco de dados).
+A aplicação esta configurada para rodar sem a instalação de um servidor local, pois no __pom.xml__ configuramos a execução local com um jetty embarcado.
+As tabelas serão criadas automaticamente durante a inicialização da aplicação pois a mesma utiliza [FlyWay](https://flywaydb.org/) para controle da evolução do banco de dados.
+
+Para iniciar a aplicação execute:
+> mvn clean install jetty:run
+
+Após isso acesse [http://localhost:8080](http://localhost:8080) para acessar e começar acessar a aplicação.
+  

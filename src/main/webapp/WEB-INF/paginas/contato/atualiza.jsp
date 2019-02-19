@@ -1,13 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/x-icon" href="${pageContext.servletContext.contextPath}/resources/images/favicon.ico" />
+<link rel="icon" type="image/x-icon"
+	href="${pageContext.servletContext.contextPath}/resources/images/favicon.ico" />
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
-<title>Agenda Servlet - Atualiza Contato <c:out value="${contato.id}" /></title>
+<title>Agenda Servlet - Atualiza Contato <c:out
+		value="${contato.id}" /></title>
 </head>
 <body>
 	<header class="w3-container w3-blue">
@@ -16,44 +19,51 @@
 	<br />
 	<div class="w3-container">
 		<c:url var="urlSalvar" value="/mvc" />
-		<form action="${urlSalvar}" method="post" id="formAtualiza" onsubmit="moduloAtualiza.enviaContato()">
+		<form action="${urlSalvar}" method="post" id="formAtualiza"
+			onsubmit="moduloAtualiza.enviaContato()">
 			<div class="w3-card-4">
 				<header class="w3-container w3-blue">
 				<h4>Dados do contato</h4>
 				</header>
 				<div class="w3-container">
-					<input type="hidden" value="salvarContato" name="command" /> 
-					<input type="hidden" value="${contato.id}" name="id" id="idContato">
+					<input type="hidden" value="salvarContato" name="command" /> <input
+						type="hidden" value="${contato.id}" name="id" id="idContato">
 					<div class="w3-row-padding" style="margin-top: 20px;">
 						<div class="w3-half">
-							<label for="nome" class="w3-text-blue"> <c:out value="Nome: " /></label> <input class="w3-input" type="text" value="${contato.nome}"
-								name="nome" id="nome"
-							>
+							<label for="nome" class="w3-text-blue"> <c:out
+									value="Nome: " /></label> <input class="w3-input" type="text"
+								value="${contato.nome}" name="nome" id="nome">
 						</div>
 					</div>
 					<input type="hidden" name="id" id="idTelefone">
 					<div class="w3-row-padding">
 						<div class="w3-col m1">
-							<label for="ddd" class="w3-text-blue">DDD</label> <input class="w3-input" type="text" name="ddd" id="ddd" />
+							<label for="ddd" class="w3-text-blue">DDD</label> <input
+								class="w3-input" type="text" name="ddd" id="ddd" />
 						</div>
 						<div class="w3-col m3">
-							<label for="telefone" class="w3-text-blue">Número</label> <input class="w3-input" type="text" name="telefone" id="telefone" />
+							<label for="telefone" class="w3-text-blue">Número</label> <input
+								class="w3-input" type="text" name="telefone" id="telefone" />
 						</div>
 						<div class="w3-col m2">
-							<label for="tipo" class="w3-text-blue">Tipo</label> <select name="tipo" id="tipo" class="w3-select">
+							<label for="tipo" class="w3-text-blue">Tipo</label> <select
+								name="tipo" id="tipo" class="w3-select">
 								<option label="Celular" value="CELULAR">Celular</option>
 								<option label="Residencial" value="RESIDENCIAL">Residencial</option>
 								<option label="Comercial" value="COMERCIAL">Comercial</option>
 							</select>
 						</div>
 						<div class="w3-col m3">
-							<input type="button" style="margin-top: 22px;" onclick="moduloAtualiza.adicionaTelefone();" class="w3-button w3-green" value="Adicionar">
+							<input type="button" style="margin-top: 22px;"
+								onclick="moduloAtualiza.adicionaTelefone();"
+								class="w3-button w3-green" value="Adicionar">
 						</div>
 					</div>
-					
+
 					<div id="telefones" style="margin-bottom: 20px; margin-top: 20px;">
 						<c:if test="${not empty contato.telefones}">
-							<table id="tabelaTelefones" class="w3-table w3-bordered w3-striped w3-card-4">
+							<table id="tabelaTelefones"
+								class="w3-table w3-bordered w3-striped w3-card-4">
 								<thead>
 									<tr class="w3-blue">
 										<th>DDD</th>
@@ -70,10 +80,12 @@
 											<td><c:out value="${c.numero}" /></td>
 											<td><c:out value="${c.tipo}" /></td>
 											<td>
-												<button type="button" class="w3-button w3-teal" onclick="moduloAtualiza.editaTelefone(this)">Editar</button>
+												<button type="button" class="w3-button w3-teal"
+													onclick="moduloAtualiza.editaTelefone(this)">Editar</button>
 											</td>
 											<td>
-												<button type="button" class="w3-button w3-red" onclick="moduloAtualiza.removeTelefone(this)">Remover</button>
+												<button type="button" class="w3-button w3-red"
+													onclick="moduloAtualiza.removeTelefone(this)">Remover</button>
 											</td>
 										</tr>
 									</c:forEach>
@@ -81,7 +93,8 @@
 							</table>
 						</c:if>
 					</div>
-					<input type="submit" value="Salvar" class="w3-button w3-green" style="margin-bottom: 20px;" />
+					<input type="submit" value="Salvar" class="w3-button w3-green"
+						style="margin-bottom: 20px;" />
 				</div>
 			</div>
 		</form>
@@ -90,6 +103,8 @@
 	<h5>Agenda Servlet</h5>
 	<p>Desenvolvida em 2018 com objetivo de estudo</p>
 	</footer>
-	<script src="${pageContext.servletContext.contextPath}/resources/js/contato/atualiza.js" type="text/javascript"></script>
+	<script
+		src="${pageContext.servletContext.contextPath}/resources/js/contato/atualiza.js"
+		type="text/javascript"></script>
 </body>
 </html>
