@@ -13,14 +13,15 @@
 		value="${contato.id}" /></title>
 </head>
 <body>
-	<header class="w3-container w3-blue">
-	<h1>Agenda Servlet</h1>
-	</header>
-	<br />
+
+	<c:import url="/WEB-INF/layout/header.jsp" />
+
+	<main style="margin-top:20px;">
+
 	<div class="w3-container">
 		<c:url var="urlSalvar" value="/mvc" />
 		<form action="${urlSalvar}" method="post" id="formAtualiza"
-			onsubmit="moduloAtualiza.enviaContato()">
+			onsubmit="moduloManipulacao.enviaContato()">
 			<div class="w3-card-4">
 				<header class="w3-container w3-blue">
 				<h4>Dados do contato</h4>
@@ -55,7 +56,7 @@
 						</div>
 						<div class="w3-col m3">
 							<input type="button" style="margin-top: 22px;"
-								onclick="moduloAtualiza.adicionaTelefone();"
+								onclick="moduloManipulacao.adicionaTelefone();"
 								class="w3-button w3-green" value="Adicionar">
 						</div>
 					</div>
@@ -81,11 +82,11 @@
 											<td><c:out value="${c.tipo}" /></td>
 											<td>
 												<button type="button" class="w3-button w3-teal"
-													onclick="moduloAtualiza.editaTelefone(this)">Editar</button>
+													onclick="moduloManipulacao.editaTelefone(this)">Editar</button>
 											</td>
 											<td>
 												<button type="button" class="w3-button w3-red"
-													onclick="moduloAtualiza.removeTelefone(this)">Remover</button>
+													onclick="moduloManipulacao.removeTelefone(this)">Remover</button>
 											</td>
 										</tr>
 									</c:forEach>
@@ -99,12 +100,14 @@
 			</div>
 		</form>
 	</div>
-	<footer class="w3-container w3-blue w3-margin-top">
-	<h5>Agenda Servlet</h5>
-	<p>Desenvolvida em 2018 com objetivo de estudo</p>
-	</footer>
+	</main>
+
+	<c:import url="/WEB-INF/modals/modal-adicao-invalida.jsp" />
+
+	<c:import url="/WEB-INF/layout/footer.jsp" />
+
 	<script
-		src="${pageContext.servletContext.contextPath}/resources/js/contato/atualiza.js"
+		src="${pageContext.servletContext.contextPath}/resources/js/contato/manipulacao-contato.js"
 		type="text/javascript"></script>
 </body>
 </html>

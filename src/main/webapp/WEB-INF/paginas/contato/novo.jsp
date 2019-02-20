@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -12,39 +12,43 @@
 <title>Agenda Servlet - Novo Contato</title>
 </head>
 <body>
-	<header class="w3-container w3-blue">
-	<h1>Agenda Servlet</h1>
-	</header>
-	<br />
+
+	<c:import url="/WEB-INF/layout/header.jsp" />
+
+	<main style="margin-top:20px;">
+
 	<div class="w3-container">
+
 		<c:url var="urlSalvar" value="/mvc" />
+
 		<form id="formNovo" action="${urlSalvar}" method="post"
-			onsubmit="moduloNovo.enviaContato();">
+			onsubmit="moduloManipulacao.enviaContato();">
+
 			<div class="w3-card-4">
 				<header class="w3-container w3-blue">
-				<h4>Dados do contato</h4>
+					<h4>Dados do contato</h4>
 				</header>
 				<div class="w3-container">
 					<input type="hidden" value="salvarContato" name="command" />
 					<div class="w3-row-padding" style="margin-top: 20px;">
 						<div class="w3-half">
 							<label for="nome" class="w3-text-blue"> <c:out
-									value="Nome: " /></label> <input type="text" class="w3-input"
+									value="Nome*" /></label> <input type="text" class="w3-input"
 								value="${contato.nome}" name="nome" id="nome">
 						</div>
 					</div>
 					<div class="w3-row-padding">
 						<div class="w3-col m1">
-							<label for="ddd" class="w3-text-blue"><c:out value="DDD" /></label>
+							<label for="ddd" class="w3-text-blue"><c:out value="DDD*" /></label>
 							<input type="text" class="w3-input" name="ddd" id="ddd" />
 						</div>
 						<div class="w3-col m3">
 							<label for="telefone" class="w3-text-blue"><c:out
-									value="Número" /></label> <input type="text" class="w3-input"
+									value="Número*" /></label> <input type="text" class="w3-input"
 								name="telefone" id="telefone" />
 						</div>
 						<div class="w3-col m2">
-							<label for="tipo" class="w3-text-blue">Tipo</label> <select
+							<label for="tipo" class="w3-text-blue">Tipo*</label> <select
 								name="tipo" class="w3-select" id="tipo">
 								<option label="Celular" value="CELULAR"><c:out
 										value="Celular" /></option>
@@ -56,23 +60,29 @@
 						</div>
 						<div class="w3-col m3">
 							<input type="button" style="margin-top: 22px;"
-								onclick="moduloNovo.adicionaTelefone();"
+								onclick="moduloManipulacao.adicionaTelefone();"
 								class="w3-button w3-green" value="Adicionar">
 						</div>
 					</div>
+
 					<div id="telefones" style="margin-bottom: 20px; margin-top: 20px;"></div>
-					<br /> <input type="submit" value="Salvar"
-						class="w3-button w3-green" style="margin-bottom: 20px;" />
+
+					<hr />
+					<input type="submit" value="Salvar" class="w3-button w3-green"
+						style="margin-bottom: 20px;" />
 				</div>
 			</div>
 		</form>
 	</div>
-	<footer class="w3-container w3-blue w3-margin-top">
-	<h5>Agenda Servlet</h5>
-	<p>Desenvolvida em 2018 com objetivo de estudo</p>
-	</footer>
+
+	</main>
+
+	<c:import url="/WEB-INF/modals/modal-adicao-invalida.jsp" />
+
+	<c:import url="/WEB-INF/layout/footer.jsp" />
+
 	<script
-		src="${pageContext.servletContext.contextPath}/resources/js/contato/novo.js"
+		src="${pageContext.servletContext.contextPath}/resources/js/contato/manipulacao-contato.js"
 		type="text/javascript"></script>
 </body>
 </html>

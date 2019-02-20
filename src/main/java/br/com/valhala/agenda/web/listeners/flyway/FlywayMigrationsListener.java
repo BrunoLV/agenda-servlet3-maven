@@ -15,12 +15,15 @@ public class FlywayMigrationsListener implements ServletContextListener {
 		super();
 	}
 
+	@Override
 	public void contextDestroyed(ServletContextEvent sce) {
 		// Do nothing
 	}
 
+	@Override
 	public void contextInitialized(ServletContextEvent sce) {
 		Flyway flyway = Flyway.configure().dataSource(FabricaConexoes.getIntance().getDataSource()).load();
+		flyway.repair();
 		flyway.migrate();
 	}
 
