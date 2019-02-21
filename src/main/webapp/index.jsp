@@ -6,11 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="refresh"
 	content="0;url=${pageContext.servletContext.contextPath}/mvc?command=listarContatos" />
-
 <link rel="icon" type="image/x-icon"
 	href="${pageContext.servletContext.contextPath}/resources/images/favicon.ico" />
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
-
 <title>Agenda Servlet - Redirecting</title>
 </head>
 <body>Redirecting...

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import br.com.valhala.agenda.db.FabricaConexoes;
+import br.com.valhala.agenda.db.FabricaConexoesDataSouce;
 import br.com.valhala.agenda.db.dao.ContatoDao;
 import br.com.valhala.agenda.erro.AppException;
 import br.com.valhala.agenda.modelo.Contato;
@@ -26,7 +26,7 @@ public class ListaContatoCommand implements Command {
 
 	@Override
 	public void execute(HttpServletRequest requisicao, HttpServletResponse resposta) throws ServletException {
-		try (Connection conexao = FabricaConexoes.getIntance().getConexao()) {
+		try (Connection conexao = FabricaConexoesDataSouce.getIntance().getConexao()) {
 			LOGGER.info("Executando comando de listagem de contatos.");
 			ContatoDao contatoDao = new ContatoDao(conexao);
 			Collection<Contato> contatos = contatoDao.lista();

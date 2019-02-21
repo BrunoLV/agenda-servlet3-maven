@@ -50,7 +50,7 @@ var moduloManipulacao = (function() {
 
 		}
 
-		if (telefone.ddd == '' || telefone.numero == '' || telefone.tipo == '') {
+		if (telefone.ddd == "" || telefone.numero == "" || telefone.tipo == "") {
 			document.getElementById('modal-adicao-invalida').style.display = 'block';
 		} else {
 
@@ -119,21 +119,30 @@ var moduloManipulacao = (function() {
 
 		contato['nome'] = document.getElementById('nome').value;
 
-		var form = edicao ? document.getElementById('formAtualiza') : document
-				.getElementById('formNovo');
+		if (contato.nome == null || contato.nome === "") {
+		
+			document.getElementById('modal-contato-invalido').style.display = 'block';
+		
+		} else {
+			
+			var form = edicao ? document.getElementById('formAtualiza')
+					: document.getElementById('formNovo');
 
-		var inputJson = document.getElementById('inputJson');
-		if (inputJson == null) {
-			inputJson = document.createElement('input');
-			inputJson.type = 'hidden';
-			inputJson.name = 'json';
-			inputJson.id = 'inputJson';
-			form.appendChild(inputJson);
+			var inputJson = document.getElementById('inputJson');
+			if (inputJson == null) {
+				inputJson = document.createElement('input');
+				inputJson.type = 'hidden';
+				inputJson.name = 'json';
+				inputJson.id = 'inputJson';
+				form.appendChild(inputJson);
+			}
+			contato['telefones'] = telefones;
+			inputJson.value = JSON.stringify(contato);
+			console.log('Elemento sendo submetido: ' + inputJson.value);
+			form.submit();
+		
 		}
-		contato['telefones'] = telefones;
-		inputJson.value = JSON.stringify(contato);
-		console.log('Elemento sendo submetido: ' + inputJson.value);
-		form.submit();
+
 	}
 
 	function remove(gatilho) {

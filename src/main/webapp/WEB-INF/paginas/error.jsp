@@ -12,38 +12,31 @@
 <title>Agenda Servlet - Erro</title>
 </head>
 <body>
-	<header class="w3-container w3-blue">
-	<h1>Agenda Servlet</h1>
-	</header>
-	<div class="w3-container">
-		<p>Ocorreu um erro na requisicao.</p>
-		<p>Passe as informações abaixo para o administrador do sistema.</p>
-		<table class="w3-table w3-bordered w3-striped w3-card-4">
-			<tbody>
-				<tr>
-					<th>Status code</th>
-					<td><c:out value="${erro.statusCode}" /></td>
-				</tr>
-				<tr>
-					<th>URI</th>
-					<td><c:out value="${erro.uri}" /></td>
-				</tr>
-				<tr>
-					<th>Mensagem</th>
-					<td><c:out value="${erro.mensagem}" /></td>
-				</tr>
-			</tbody>
-		</table>
-		<br />
-		<c:url var="home" value="/mvc">
-			<c:param name="command" value="listarContatos" />
-		</c:url>
-		<a href="${home}" class="w3-button w3-green">Volta para o Lista de
-			Contatos</a>
-	</div>
-	<footer class="w3-container w3-blue w3-margin-top">
-	<h5>Agenda Servlet</h5>
-	<p>Desenvolvida em 2018 com objetivo de estudo</p>
-	</footer>
+	<c:import url="/WEB-INF/layout/header.jsp" />
+	<main class="w3-container">
+	<p>Ocorreu um erro na requisicao.</p>
+	<p>Passe as informações abaixo para o administrador do sistema.</p>
+	<table class="w3-table w3-bordered w3-striped w3-card-4">
+		<tbody>
+			<tr>
+				<th>Status code</th>
+				<td><c:out value="${erro.statusCode}" /></td>
+			</tr>
+			<tr>
+				<th>URI</th>
+				<td><c:out value="${erro.uri}" /></td>
+			</tr>
+			<tr>
+				<th>Mensagem</th>
+				<td><c:out value="${erro.mensagem}" /></td>
+			</tr>
+		</tbody>
+	</table>
+	<br />
+	<c:url var="home" value="/mvc">
+		<c:param name="command" value="listarContatos" />
+	</c:url> <a href="${home}" class="w3-button w3-green">Volta para o Lista de
+		Contatos</a> </main>
+	<c:import url="/WEB-INF/layout/footer.jsp" />
 </body>
 </html>

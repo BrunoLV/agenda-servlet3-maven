@@ -1,4 +1,4 @@
-package br.com.valhala.agenda.json.adapters;
+package br.com.valhala.agenda.adapters.json;
 
 import java.io.IOException;
 

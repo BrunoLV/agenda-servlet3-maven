@@ -30,8 +30,9 @@ public class Contato implements Serializable, Comparable<Contato> {
 			return this;
 		}
 
-		public void setNome(String nome) {
-			this.nome = nome;
+		public Builder comTelefone(Telefone telefone) {
+			telefones.add(telefone);
+			return this;
 		}
 
 		public Builder telefones(Collection<Telefone> telefones) {

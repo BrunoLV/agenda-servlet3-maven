@@ -13,10 +13,10 @@ import org.apache.log4j.Logger;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import br.com.valhala.agenda.db.FabricaConexoes;
+import br.com.valhala.agenda.adapters.json.NumberTypeAdapter;
+import br.com.valhala.agenda.db.FabricaConexoesDataSouce;
 import br.com.valhala.agenda.db.dao.ContatoDao;
 import br.com.valhala.agenda.erro.AppException;
-import br.com.valhala.agenda.json.adapters.NumberTypeAdapter;
 import br.com.valhala.agenda.modelo.Contato;
 import br.com.valhala.agenda.web.commands.Command;
 
@@ -29,7 +29,7 @@ public class SalvarContatoCommand implements Command {
 
 	@Override
 	public void execute(HttpServletRequest requisicao, HttpServletResponse resposta) throws ServletException {
-		try (Connection conexao = FabricaConexoes.getIntance().getConexao()) {
+		try (Connection conexao = FabricaConexoesDataSouce.getIntance().getConexao()) {
 			try {
 				LOGGER.info("Executando comando para salvar informacoes de contato na base do sistema.");
 				ContatoDao contatoDao = new ContatoDao(conexao);

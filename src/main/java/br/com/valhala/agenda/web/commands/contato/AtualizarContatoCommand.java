@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import br.com.valhala.agenda.db.FabricaConexoes;
+import br.com.valhala.agenda.db.FabricaConexoesDataSouce;
 import br.com.valhala.agenda.db.dao.ContatoDao;
 import br.com.valhala.agenda.erro.AppException;
 import br.com.valhala.agenda.modelo.Contato;
@@ -26,7 +26,7 @@ public class AtualizarContatoCommand implements Command {
 
 	@Override
 	public void execute(HttpServletRequest requisicao, HttpServletResponse resposta) throws ServletException {
-		try (Connection conexao = FabricaConexoes.getIntance().getConexao()) {
+		try (Connection conexao = FabricaConexoesDataSouce.getIntance().getConexao()) {
 			LOGGER.info("Executando comando para atualizacao de cadastro de contato.");
 			Long id = Long.parseLong(requisicao.getParameter(PARAMETRO_ID));
 			ContatoDao contatoDao = new ContatoDao(conexao);

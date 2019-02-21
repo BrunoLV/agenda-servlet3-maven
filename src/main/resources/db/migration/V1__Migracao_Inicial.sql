@@ -1,17 +1,16 @@
 CREATE TABLE contato (
-  id bigint(20) NOT NULL AUTO_INCREMENT,
-  nome varchar(150) NOT NULL,
-  PRIMARY KEY (id),
-  UNIQUE KEY nome (nome)
+  id BIGINT(20) NOT NULL AUTO_INCREMENT,
+  nome VARCHAR(150) NOT NULL,
+  CONSTRAINT PK_CONTATO PRIMARY KEY(id),
+  CONSTRAINT UC_NOME UNIQUE(nome)
 );
 
 CREATE TABLE telefone (
-  id bigint(20) NOT NULL AUTO_INCREMENT,
-  ddd varchar(3) NOT NULL,
-  numero varchar(15) NOT NULL,
-  tipo varchar(20) NOT NULL,
-  id_contato bigint(20) NOT NULL,
-  PRIMARY KEY (id),
-  KEY id_contato (id_contato),
+  id BIGINT(20) NOT NULL AUTO_INCREMENT,
+  ddd VARCHAR(3) NOT NULL,
+  numero VARCHAR(15) NOT NULL,
+  tipo VARCHAR(20) NOT NULL,
+  id_contato BIGINT(20) NOT NULL,
+  CONSTRAINT PK_TELEFONE PRIMARY KEY(id),
   CONSTRAINT FK_ID_CONTATO_TELEFONE FOREIGN KEY (id_contato) REFERENCES contato (id)
 );

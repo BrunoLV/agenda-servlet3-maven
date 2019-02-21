@@ -15,7 +15,7 @@
 						<Set name="password">root</Set>
 						<Call name="addDataSourceProperty">
 							<Arg>url</Arg>
-							<Arg>jdbc:mysql://localhost:3306/agenda</Arg>
+							<Arg>jdbc:mysql://localhost:3306/agenda?autoCommit=false</Arg>
 						</Call>
 					</New>
 				</Arg>
