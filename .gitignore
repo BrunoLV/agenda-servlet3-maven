@@ -2,3 +2,6 @@
 /.settings/
 /.classpath
 /.project
+/.idea
+/agenda-servlet3-maven.iml
+

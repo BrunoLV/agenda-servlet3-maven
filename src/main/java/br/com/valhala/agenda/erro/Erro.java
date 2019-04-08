@@ -4,61 +4,59 @@ import java.io.Serializable;
 
 public class Erro implements Serializable {
 
-	public static class Builder {
+    private static final long serialVersionUID = 1L;
+    private String mensagem;
+    private String uri;
+    private Integer statusCode;
 
-		private String mensagem;
-		private String uri;
-		private Integer statusCode;
+    private Erro(Builder builder) {
+        super();
+        mensagem = builder.mensagem;
+        uri = builder.uri;
+        statusCode = builder.statusCode;
+    }
 
-		public Builder() {
-			super();
-		}
+    public String getMensagem() {
+        return mensagem;
+    }
 
-		public Erro build() {
-			return new Erro(this);
-		}
+    public Integer getStatusCode() {
+        return statusCode;
+    }
 
-		public Builder mensagem(String mensagem) {
-			this.mensagem = mensagem;
-			return this;
-		}
+    public String getUri() {
+        return uri;
+    }
 
-		public Builder statusCode(Integer statusCode) {
-			this.statusCode = statusCode;
-			return this;
-		}
+    public static class Builder {
 
-		public Builder uri(String uri) {
-			this.uri = uri;
-			return this;
-		}
+        private String mensagem;
+        private String uri;
+        private Integer statusCode;
 
-	}
+        public Builder() {
+            super();
+        }
 
-	private static final long serialVersionUID = 1L;
+        public Erro build() {
+            return new Erro(this);
+        }
 
-	private String mensagem;
-	private String uri;
+        public Builder mensagem(String mensagem) {
+            this.mensagem = mensagem;
+            return this;
+        }
 
-	private Integer statusCode;
+        public Builder statusCode(Integer statusCode) {
+            this.statusCode = statusCode;
+            return this;
+        }
 
-	private Erro(Builder builder) {
-		super();
-		mensagem = builder.mensagem;
-		uri = builder.uri;
-		statusCode = builder.statusCode;
-	}
+        public Builder uri(String uri) {
+            this.uri = uri;
+            return this;
+        }
 
-	public String getMensagem() {
-		return mensagem;
-	}
-
-	public Integer getStatusCode() {
-		return statusCode;
-	}
-
-	public String getUri() {
-		return uri;
-	}
+    }
 
 }

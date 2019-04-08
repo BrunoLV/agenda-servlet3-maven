@@ -1,32 +1,32 @@
 package br.com.valhala.agenda.web.commands.utils;
 
+import br.com.valhala.agenda.web.commands.Command;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import br.com.valhala.agenda.web.commands.Command;
-
 public final class CommandUtils {
 
-	private static Properties properties;
+    private static Properties properties;
 
-	static {
-		try (InputStream stream = Thread.currentThread().getContextClassLoader()
-				.getResourceAsStream("commands.properties")) {
-			properties = new Properties();
-			properties.load(stream);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+    static {
+        try (InputStream stream = Thread.currentThread().getContextClassLoader()
+                .getResourceAsStream("commands.properties")) {
+            properties = new Properties();
+            properties.load(stream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-	public static boolean existeComando(String comando) {
-		return properties.containsKey(comando);
-	}
+    public static boolean existeComando(String comando) {
+        return properties.containsKey(comando);
+    }
 
-	public static Command getComando(String comando)
-			throws InstantiationException, IllegalAccessException, ClassNotFoundException {
-		return (Command) Class.forName(properties.getProperty(comando)).newInstance();
-	}
+    public static Command getComando(String comando)
+            throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+        return (Command) Class.forName(properties.getProperty(comando)).newInstance();
+    }
 
 }

@@ -1,139 +1,137 @@
 package br.com.valhala.agenda.modelo;
 
-import java.io.Serializable;
-
 import br.com.valhala.agenda.modelo.enums.EnumTipoTelefone;
+
+import java.io.Serializable;
 
 public class Telefone implements Serializable {
 
-	public static class Builder {
+    private static final long serialVersionUID = 7361262600196016914L;
+    private Long id;
+    private String ddd;
+    private String numero;
+    private EnumTipoTelefone tipo;
 
-		private Long id;
-		private String ddd;
-		private String numero;
-		private EnumTipoTelefone tipo;
+    private Telefone(Builder builder) {
+        id = builder.id;
+        ddd = builder.ddd;
+        numero = builder.numero;
+        tipo = builder.tipo;
+    }
 
-		public Builder() {
-			super();
-		}
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof Telefone)) {
+            return false;
+        }
+        Telefone other = (Telefone) obj;
+        if (ddd == null) {
+            if (other.ddd != null) {
+                return false;
+            }
+        } else if (!ddd.equals(other.ddd)) {
+            return false;
+        }
+        if (numero == null) {
+            if (other.numero != null) {
+                return false;
+            }
+        } else if (!numero.equals(other.numero)) {
+            return false;
+        }
+        if (tipo != other.tipo) {
+            return false;
+        }
+        return true;
+    }
 
-		public Telefone build() {
-			return new Telefone(this);
-		}
+    public String getDdd() {
+        return ddd;
+    }
 
-		public Builder ddd(String ddd) {
-			this.ddd = ddd;
-			return this;
-		}
+    public Long getId() {
+        return id;
+    }
 
-		public Builder id(Long id) {
-			this.id = id;
-			return this;
-		}
+    public String getNumero() {
+        return numero;
+    }
 
-		public Builder numero(String numero) {
-			this.numero = numero;
-			return this;
-		}
+    public EnumTipoTelefone getTipo() {
+        return tipo;
+    }
 
-		public Builder tipo(EnumTipoTelefone tipo) {
-			this.tipo = tipo;
-			return this;
-		}
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = (prime * result) + ((ddd == null) ? 0 : ddd.hashCode());
+        result = (prime * result) + ((numero == null) ? 0 : numero.hashCode());
+        result = (prime * result) + ((tipo == null) ? 0 : tipo.hashCode());
+        return result;
+    }
 
-	}
+    @Override
+    public String toString() {
+        StringBuilder builder2 = new StringBuilder();
+        builder2.append("Telefone [");
+        if (id != null) {
+            builder2.append("id=").append(id).append(", ");
+        }
+        if (ddd != null) {
+            builder2.append("ddd=").append(ddd).append(", ");
+        }
+        if (numero != null) {
+            builder2.append("numero=").append(numero).append(", ");
+        }
+        if (tipo != null) {
+            builder2.append("tipo=").append(tipo);
+        }
+        builder2.append("]");
+        return builder2.toString();
+    }
 
-	private static final long serialVersionUID = 7361262600196016914L;
+    public static class Builder {
 
-	private Long id;
-	private String ddd;
-	private String numero;
+        private Long id;
+        private String ddd;
+        private String numero;
+        private EnumTipoTelefone tipo;
 
-	private EnumTipoTelefone tipo;
+        public Builder() {
+            super();
+        }
 
-	private Telefone(Builder builder) {
-		id = builder.id;
-		ddd = builder.ddd;
-		numero = builder.numero;
-		tipo = builder.tipo;
-	}
+        public Telefone build() {
+            return new Telefone(this);
+        }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (!(obj instanceof Telefone)) {
-			return false;
-		}
-		Telefone other = (Telefone) obj;
-		if (ddd == null) {
-			if (other.ddd != null) {
-				return false;
-			}
-		} else if (!ddd.equals(other.ddd)) {
-			return false;
-		}
-		if (numero == null) {
-			if (other.numero != null) {
-				return false;
-			}
-		} else if (!numero.equals(other.numero)) {
-			return false;
-		}
-		if (tipo != other.tipo) {
-			return false;
-		}
-		return true;
-	}
+        public Builder ddd(String ddd) {
+            this.ddd = ddd;
+            return this;
+        }
 
-	public String getDdd() {
-		return ddd;
-	}
+        public Builder id(Long id) {
+            this.id = id;
+            return this;
+        }
 
-	public Long getId() {
-		return id;
-	}
+        public Builder numero(String numero) {
+            this.numero = numero;
+            return this;
+        }
 
-	public String getNumero() {
-		return numero;
-	}
+        public Builder tipo(EnumTipoTelefone tipo) {
+            this.tipo = tipo;
+            return this;
+        }
 
-	public EnumTipoTelefone getTipo() {
-		return tipo;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = (prime * result) + ((ddd == null) ? 0 : ddd.hashCode());
-		result = (prime * result) + ((numero == null) ? 0 : numero.hashCode());
-		result = (prime * result) + ((tipo == null) ? 0 : tipo.hashCode());
-		return result;
-	}
-
-	@Override
-	public String toString() {
-		StringBuilder builder2 = new StringBuilder();
-		builder2.append("Telefone [");
-		if (id != null) {
-			builder2.append("id=").append(id).append(", ");
-		}
-		if (ddd != null) {
-			builder2.append("ddd=").append(ddd).append(", ");
-		}
-		if (numero != null) {
-			builder2.append("numero=").append(numero).append(", ");
-		}
-		if (tipo != null) {
-			builder2.append("tipo=").append(tipo);
-		}
-		builder2.append("]");
-		return builder2.toString();
-	}
+    }
 
 }
